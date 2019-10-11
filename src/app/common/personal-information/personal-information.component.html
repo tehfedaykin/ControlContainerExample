@@ -1,0 +1,16 @@
+<h4>Some basic personal information</h4>
+<ng-container [formGroup]="controlContainer.control">
+  <div class="form-group">
+    <label for="name">First Name</label>
+    <input name="first_name" formControlName="first_name"/>
+  </div>
+  <div class="form-group">
+    <label for="name">Last Name</label>
+    <input name="last_name" formControlName="last_name"/>
+  </div>
+  <div class="form-group">
+    <label for="name">Email Address</label>
+    <input name="email" formControlName="email"/>
+  </div>
+  <app-address></app-address>
+</ng-container>

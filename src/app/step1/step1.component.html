@@ -1,0 +1,8 @@
+<h3>Step One of Our Sign-in Process</h3>
+<form [formGroup]="parentForm">
+  <div class="form-group">
+    <label for="name">Choose a User Name</label>
+    <input name="user_name" formControlName="user_name" />
+  </div>
+</form>
+<button [disabled]="!parentForm.controls.user_name.valid" routerLink="/signup/step-2">Next</button>

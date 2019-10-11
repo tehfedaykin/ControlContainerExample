@@ -1,0 +1,12 @@
+<h3>Step Three of Our Sign-in Process</h3>
+<form [formGroup]="parentForm">
+  <div class="form-group">
+    <label for="name">Choose a Favorite Color</label>
+    <input name="favorite_color" formControlName="favorite_color" />
+  </div>
+  <div class="form-group">
+    <label for="name">Choose a Favorite Food</label>
+    <input name="favorite_food" formControlName="favorite_food" />
+  </div>
+  <app-dependent></app-dependent>
+</form>

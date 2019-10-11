@@ -1,0 +1,14 @@
+<h3>Parent Component with Form Views</h3>
+<p>I hold the main form.</p>
+<div class="content">
+  <form [formGroup]="mainForm" class="form-ui">
+    <button routerLink="step-1">Step 1</button><button routerLink="step-2">Step 2</button><button
+      routerLink="step-3">Step 3</button>
+    <router-outlet></router-outlet>
+  </form>
+  <div class="form-ui form-value">
+    <h4>Current Form Value</h4>
+    <pre [innerHTML]="mainForm.value | prettyprint"></pre>
+    <h4>Form Validity: {{mainForm.valid}}</h4>
+  </div>
+</div>
