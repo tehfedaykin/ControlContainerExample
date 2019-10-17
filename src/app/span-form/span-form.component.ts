@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-span-form',
@@ -8,12 +8,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SpanFormComponent implements OnInit {
   public mainForm: FormGroup;
-  public sampleForm: FormGroup;
   constructor(
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    const control = new FormControl('inital value', {validators: Validators.required})
     this.mainForm = this.fb.group({
       user_name: ['', Validators.required],
       first_name: ['',Validators.required],
@@ -27,12 +27,34 @@ export class SpanFormComponent implements OnInit {
       }),
       favorite_color: ['',Validators.required],
       favorite_food: ['',Validators.required],
+      favorite_queen: ['80',Validators.required],
       favorite_season: ['',Validators.required],
-      favorite_episode: ['',Validators.required]
+      favorite_episode: [''],
+      favorite_lipsyncs: this.fb.array([
+        this.fb.group({
+          lipsync: [''],
+          ranking: ['']
+        })
+      ])
     })
 
-    this.mainForm.valueChanges.subscribe((val) => {
-      console.log('form changed', val);
+    this.mainForm.get('favorite_season').valueChanges.subscribe((val) => {
+      const favEpControl = this.mainForm.get('favorite_episode');
+      if(val) {
+        favEpControl.setValidators(Validators.required);
+        favEpControl.setValue('59');
+      }
+      else {
+        favEpControl.setValidators(null)
+      }
+      favEpControl.updateValueAndValidity();
+    })
+  }
+
+  save() {
+    Object.keys(this.mainForm.controls).forEach((field) => {
+      const control = this.mainForm.get(field);
+      control.markAsTouched();
     })
   }
 

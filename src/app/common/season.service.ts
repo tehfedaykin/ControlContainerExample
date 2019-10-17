@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface Iqueen {
+export interface Iqueen {
   id: number;
   name: string;
   place: number;
@@ -35,5 +35,13 @@ export class SeasonService {
 
   getSeasonEpisodes(seasonId: number) {
     return this.http.get<Iepisode[]>(`http://www.nokeynoshade.party/api/seasons/${seasonId}/episodes`)
+  }
+
+  getQueens() {
+    return this.http.get<Iqueen[]>(`http://www.nokeynoshade.party/api/queens/all`);
+  }
+
+  getLipsyncs() {
+    return this.http.get<any[]>(`http://www.nokeynoshade.party/api/lipsyncs`);
   }
 }

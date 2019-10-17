@@ -13,8 +13,11 @@ import { PersonalInformationComponent } from './common/personal-information/pers
 import { Step1Component } from './step1/step1.component';
 import { Step2Component } from './step2/step2.component';
 import { Step3Component } from './step3/step3.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrettyPrintPipe } from './prettyprint.pipe';
+import { TypeAheadComponent } from './common/type-ahead/type-ahead.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { AddqueenComponent } from './addqueen/addqueen.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { PrettyPrintPipe } from './prettyprint.pipe';
     Step1Component,
     Step2Component,
     Step3Component,
-    PrettyPrintPipe
+    PrettyPrintPipe,
+    TypeAheadComponent,
+    AddqueenComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,9 @@ import { PrettyPrintPipe } from './prettyprint.pipe';
     HttpClientModule,
     NoopAnimationsModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    TypeaheadModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

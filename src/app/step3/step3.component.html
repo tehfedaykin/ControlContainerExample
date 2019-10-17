@@ -1,12 +1,29 @@
 <h3>Step Three of Our Sign-in Process</h3>
 <form [formGroup]="parentForm">
   <div class="form-group">
-    <label for="name">Choose a Favorite Color</label>
+    <label for="favorite_color">Choose a Favorite Color</label>
     <input name="favorite_color" formControlName="favorite_color" />
   </div>
   <div class="form-group">
-    <label for="name">Choose a Favorite Food</label>
+    <label for="favorite_food">Choose a Favorite Food</label>
     <input name="favorite_food" formControlName="favorite_food" />
   </div>
   <app-dependent></app-dependent>
+  <div class="form-group">
+    <label for="favorite_queen">Choose a Favorite Queen</label>
+    <ng-container *ngIf="queens$ | async as queens">
+      <app-typeahead formControlName="favorite_queen" [data]="queens"></app-typeahead>
+    </ng-container>
+  </div>
+  <div class="form-group" *ngIf="lipsyncs$ | async as lipsyncs">
+    <label for="favorite_queen">Choose A Few Favorite Lipsyncs</label>
+    <ng-container *ngFor="let lipSyncGroup of lipSyncFormArray.controls; let i=index">
+      <div class="form-group" [formGroup]="lipSyncGroup">
+        <app-typeahead formControlName="lipsync" [data]="lipsyncs"></app-typeahead>
+        <input type="text" formControlName="ranking" />
+        <button (click)="removeLipsync(i)">X</button>
+      </div>
+    </ng-container>
+    <button (click)="addLipsync()">Add another lipsync</button>
+  </div>
 </form>
